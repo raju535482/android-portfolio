@@ -9,15 +9,37 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; }
-        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        
+        /* The specific glass theme you liked */
+        .glass-card { 
+            background: rgba(30, 41, 59, 0.7); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(74, 222, 128, 0.3);
+        }
         .skill-badge { background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2); }
+        
+        /* Filter Logic visibility */
+        .project-hidden { display: none; }
+        .filter-btn.active { background-color: #4ade80; color: #0f172a; }
     </style>
 </head>
 <body class="text-slate-200">
 
     <header class="max-w-6xl mx-auto px-6 pt-20 pb-12 text-center">
-        <h1 class="text-5xl font-extrabold text-white tracking-tight mb-4">Android Developer Portfolio</h1>
-        <p class="text-xl text-slate-400 max-w-2xl mx-auto">Specializing in high-performance applications with Kotlin, Room DB, and Jetpack Compose.</p>
+        <h1 class="text-5xl font-extrabold text-white tracking-tight mb-4">Raju Yadav</h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">Android Developer specializing in Kotlin, Room DB, and Jetpack Compose.</p>
+        
+        <div class="flex flex-wrap justify-center gap-2 mt-10">
+            <button onclick="filterApps('all', event)" class="filter-btn active px-5 py-2 rounded-full border border-slate-700 text-sm font-bold transition-all hover:border-green-400">All Apps</button>
+            <button onclick="filterApps('business', event)" class="filter-btn px-5 py-2 rounded-full border border-slate-700 text-sm font-bold transition-all hover:border-green-400">Business</button>
+            <button onclick="filterApps('utility', event)" class="filter-btn px-5 py-2 rounded-full border border-slate-700 text-sm font-bold transition-all hover:border-green-400">Utilities</button>
+            <button onclick="filterApps('lifestyle', event)" class="filter-btn px-5 py-2 rounded-full border border-slate-700 text-sm font-bold transition-all hover:border-green-400">Lifestyle</button>
+        </div>
     </header>
 
     <section class="max-w-6xl mx-auto px-6 mb-20">
@@ -26,11 +48,11 @@
         </h2>
         <div class="flex flex-wrap gap-3">
             <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Kotlin</span>
-            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Android SDK</span>
             <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Jetpack Compose</span>
             <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Room DB</span>
             <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Retrofit</span>
             <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Firebase</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Android SDK</span>
         </div>
     </section>
 
@@ -38,9 +60,9 @@
         <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-2">
             <i data-lucide="layers" class="text-green-400"></i> Featured Apps
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="app-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            <div class="glass-card p-6 rounded-3xl flex flex-col">
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="business">
                 <div class="flex items-center space-x-4 mb-5">
                     <div class="w-14 h-14 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400 text-2xl">🚕</div>
                     <div>
@@ -54,7 +76,7 @@
                 </a>
             </div>
 
-            <div class="glass-card p-6 rounded-3xl flex flex-col">
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="business">
                 <div class="flex items-center space-x-4 mb-5">
                     <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 text-2xl">💼</div>
                     <div>
@@ -68,7 +90,7 @@
                 </a>
             </div>
 
-            <div class="glass-card p-6 rounded-3xl flex flex-col">
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="business">
                 <div class="flex items-center space-x-4 mb-5">
                     <div class="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 text-2xl">📅</div>
                     <div>
@@ -82,7 +104,7 @@
                 </a>
             </div>
 
-            <div class="glass-card p-6 rounded-3xl flex flex-col">
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="lifestyle">
                 <div class="flex items-center space-x-4 mb-5">
                     <div class="w-14 h-14 bg-pink-500/20 rounded-2xl flex items-center justify-center text-pink-400 text-2xl">🧠</div>
                     <div>
@@ -96,7 +118,7 @@
                 </a>
             </div>
 
-            <div class="glass-card p-6 rounded-3xl flex flex-col">
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="utility">
                 <div class="flex items-center space-x-4 mb-5">
                     <div class="w-14 h-14 bg-indigo-500/20 rounded-2xl flex items-center justify-center text-indigo-400 text-2xl">🎬</div>
                     <div>
@@ -110,7 +132,7 @@
                 </a>
             </div>
 
-            <div class="glass-card p-6 rounded-3xl flex flex-col">
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="utility">
                 <div class="flex items-center space-x-4 mb-5">
                     <div class="w-14 h-14 bg-orange-500/20 rounded-2xl flex items-center justify-center text-orange-400 text-2xl">🎨</div>
                     <div>
@@ -127,18 +149,46 @@
         </div>
     </section>
 
-    <section class="max-w-2xl mx-auto px-6 pb-32">
-        <div class="glass-card p-8 rounded-3xl">
-            <h2 class="text-3xl font-bold text-white mb-2 text-center">Contact Me</h2>
-            <form action="https://formspree.io/f/your_unique_id" method="POST" class="space-y-4">
-                <input type="text" name="name" required placeholder="Your Name" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-green-400">
-                <input type="email" name="email" required placeholder="Email Address" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-green-400">
-                <textarea name="message" rows="4" required placeholder="Your Message" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-green-400"></textarea>
-                <button type="submit" class="w-full bg-green-500 text-slate-900 font-bold py-4 rounded-xl shadow-lg shadow-green-500/20">Send Message</button>
-            </form>
+    <section class="max-w-2xl mx-auto px-6 pb-32 text-center">
+        <div class="glass-card p-10 rounded-3xl">
+            <h2 class="text-3xl font-bold text-white mb-6">Let's Connect</h2>
+            <button onclick="smartContact()" class="w-full bg-green-500 text-slate-900 font-bold py-4 rounded-xl shadow-lg shadow-green-500/20 hover:bg-white transition-all">
+                Send me an Email
+            </button>
+            <p class="text-slate-500 mt-4 text-sm font-medium tracking-wide">raju.yadav535482@gmail.com</p>
         </div>
     </section>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+
+        // Filtering Logic
+        function filterApps(category, e) {
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.app-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('project-hidden');
+                } else {
+                    card.classList.add('project-hidden');
+                }
+            });
+        }
+
+        // Smart Gmail/Mobile App Logic
+        function smartContact() {
+            const email = "raju.yadav535482@gmail.com";
+            const subject = "Contact from Portfolio";
+            const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+            if (isMobile) {
+                window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+            } else {
+                window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`, '_blank');
+            }
+        }
+    </script>
 </body>
 </html>
