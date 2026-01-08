@@ -3,174 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raju Yadav | Android Developer</title>
+    <title>Android Portfolio | Raju Yadav</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        // Tailwind configuration for Dark Mode
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: '#4ade80', // Android Green
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
-        
-        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.5s ease; }
-
-        /* Backgrounds */
+        body { transition: background-color 0.3s ease; }
+        /* Original Dark Style */
         .dark body { background-color: #0f172a; color: #f1f5f9; }
-        .light body { background-color: #f8fafc; color: #1e293b; }
+        .light body { background-color: #ffffff; color: #1e293b; }
 
-        .parallax-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        
-        /* Floating Icons */
-        .floating-icon { position: absolute; opacity: 0.15; transition: opacity 0.5s; }
-        .light .floating-icon { opacity: 0.08; }
-
-        /* Card Styles */
-        .glass-card { 
-            backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .app-card { 
+            transition: all 0.3s ease; 
+            border: 1px solid rgba(255,255,255,0.1); 
         }
-        .dark .glass-card { background: rgba(30, 41, 59, 0.6); }
-        .light .glass-card { background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .dark .app-card { background-color: #1e293b; }
+        .light .app-card { background-color: #f1f5f9; border-color: #e2e8f0; }
 
-        .project-card.hidden { display: none; }
+        .app-card:hover { 
+            transform: translateY(-5px); 
+            border-color: #4ade80; 
+        }
         
-        .filter-btn.active { background-color: #4ade80; color: #0f172a; }
+        /* Filter Logic */
+        .project-hidden { display: none; }
+        .filter-btn.active { background-color: #4ade80; color: #0f172a; border-color: #4ade80; }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="font-sans antialiased">
 
-    <div class="fixed top-6 right-6 z-50">
-        <button onclick="toggleTheme()" class="p-3 rounded-full glass-card hover:scale-110 transition-transform">
-            <i id="theme-icon" data-lucide="moon" class="dark:text-yellow-400 light:text-slate-700"></i>
+    <div class="max-w-6xl mx-auto px-6 pt-6 flex justify-end">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-700 hover:bg-slate-800 transition-colors">
+            <i id="theme-icon" data-lucide="moon" class="w-5 h-5"></i>
         </button>
     </div>
 
-    <div class="parallax-wrapper">
-        <div class="floating-icon" style="top: 15%; left: 5%; color: #7F52FF;"><i data-lucide="code" size="80"></i></div>
-        <div class="floating-icon" style="top: 50%; right: 10%; color: #3DDC84;"><i data-lucide="android" size="100"></i></div>
-    </div>
+    <header class="max-w-6xl mx-auto px-6 pt-10 pb-12 text-center">
+        <h1 class="text-4xl font-bold dark:text-white light:text-slate-900">Raju Yadav</h1>
+        <p class="text-slate-400 mt-2">Android Developer • Mobile Solutions</p>
+        
+        <div class="flex flex-wrap justify-center gap-2 mt-8">
+            <button onclick="filterApps('all', event)" class="filter-btn active px-4 py-1.5 rounded-md border border-slate-700 text-sm font-medium transition-all">All</button>
+            <button onclick="filterApps('business', event)" class="filter-btn px-4 py-1.5 rounded-md border border-slate-700 text-sm font-medium transition-all">Business</button>
+            <button onclick="filterApps('utility', event)" class="filter-btn px-4 py-1.5 rounded-md border border-slate-700 text-sm font-medium transition-all">Utilities</button>
+            <button onclick="filterApps('lifestyle', event)" class="filter-btn px-4 py-1.5 rounded-md border border-slate-700 text-sm font-medium transition-all">Lifestyle</button>
+        </div>
+    </header>
 
-    <div class="relative z-10">
-        <header class="max-w-6xl mx-auto px-6 pt-24 pb-12 text-center">
-            <h1 class="text-6xl font-extrabold mb-4 tracking-tighter dark:text-white light:text-slate-900">Raju Yadav</h1>
-            <p class="dark:text-slate-400 light:text-slate-600 text-lg mb-8">Android Developer • 2026 Portfolio</p>
+    <main class="max-w-6xl mx-auto px-6 pb-20">
+        <div id="app-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <button onclick="filterProjects('all', event)" class="filter-btn active px-6 py-2 rounded-full border border-slate-700 dark:text-white light:text-slate-900 transition-all text-sm font-bold">All</button>
-                <button onclick="filterProjects('business', event)" class="filter-btn px-6 py-2 rounded-full border border-slate-700 dark:text-white light:text-slate-900 transition-all text-sm font-bold">Business</button>
-                <button onclick="filterProjects('utility', event)" class="filter-btn px-6 py-2 rounded-full border border-slate-700 dark:text-white light:text-slate-900 transition-all text-sm font-bold">Utilities</button>
-                <button onclick="filterProjects('lifestyle', event)" class="filter-btn px-6 py-2 rounded-full border border-slate-700 dark:text-white light:text-slate-900 transition-all text-sm font-bold">Lifestyle</button>
+            <div class="app-card p-6 rounded-xl flex flex-col" data-category="business">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="text-3xl">🚕</div>
+                    <h3 class="text-lg font-bold">NjoyCabs</h3>
+                </div>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Taxi booking app for intercity travel with one-way and multi-day options.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.njoy_outstation" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
             </div>
-        </header>
 
-        <section class="max-w-6xl mx-auto px-6 mb-32">
-            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="project-card" data-category="business">
-                    <div class="glass-card p-6 rounded-3xl h-full flex flex-col group">
-                        <span class="text-3xl mb-4 group-hover:scale-125 transition-transform inline-block">🚕</span>
-                        <h3 class="text-xl font-bold mb-2">NjoyCabs</h3>
-                        <p class="dark:text-slate-400 light:text-slate-600 text-sm flex-grow mb-6">Intercity taxi booking with multi-day ride options.</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.njoy_outstation" target="_blank" class="block text-center py-3 bg-brand text-slate-900 font-bold rounded-xl hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">Play Store</a>
-                    </div>
+            <div class="app-card p-6 rounded-xl flex flex-col" data-category="business">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="text-3xl">💼</div>
+                    <h3 class="text-lg font-bold">MWR Life</h3>
                 </div>
-
-                <div class="project-card" data-category="utility">
-                    <div class="glass-card p-6 rounded-3xl h-full flex flex-col group">
-                        <span class="text-3xl mb-4 group-hover:scale-125 transition-transform inline-block">🎬</span>
-                        <h3 class="text-xl font-bold mb-2">VideoCompresso</h3>
-                        <p class="dark:text-slate-400 light:text-slate-600 text-sm flex-grow mb-6">High-efficiency video compression and trimming tool.</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.sony.videocomressor" target="_blank" class="block text-center py-3 bg-brand text-slate-900 font-bold rounded-xl hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">Play Store</a>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="lifestyle">
-                    <div class="glass-card p-6 rounded-3xl h-full flex flex-col group">
-                        <span class="text-3xl mb-4 group-hover:scale-125 transition-transform inline-block">🧠</span>
-                        <h3 class="text-xl font-bold mb-2">Mood Tracker</h3>
-                        <p class="dark:text-slate-400 light:text-slate-600 text-sm flex-grow mb-6">Encrypted mood diary powered by Room Database.</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.moodtracker" target="_blank" class="block text-center py-3 bg-brand text-slate-900 font-bold rounded-xl hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">Play Store</a>
-                    </div>
-                </div>
-
+                <p class="text-slate-400 text-sm flex-grow mb-6">Business management platform for lifestyle consultants with push alerts.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.mwrlife" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
             </div>
-        </section>
 
-        <footer class="text-center py-20">
-            <button onclick="contactMe()" class="px-12 py-4 bg-brand text-slate-900 font-bold rounded-2xl hover:scale-105 transition-transform shadow-xl shadow-green-500/20">
-                Contact Me
-            </button>
-        </footer>
-    </div>
+            <div class="app-card p-6 rounded-xl flex flex-col" data-category="business">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="text-3xl">📅</div>
+                    <h3 class="text-lg font-bold">Holiday Tracker</h3>
+                </div>
+                <p class="text-slate-400 text-sm flex-grow mb-6">HR leave management system with status tracking and notifications.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.oneclick.admin.calendar" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+            </div>
+
+            <div class="app-card p-6 rounded-xl flex flex-col" data-category="utility">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="text-3xl">🎬</div>
+                    <h3 class="text-lg font-bold">VideoCompresso</h3>
+                </div>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Video utility for compression, trimming, and reverse playback features.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.sony.videocomressor" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+            </div>
+
+            <div class="app-card p-6 rounded-xl flex flex-col" data-category="utility">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="text-3xl">🎨</div>
+                    <h3 class="text-lg font-bold">Quick Stickers</h3>
+                </div>
+                <p class="text-slate-400 text-sm flex-grow mb-6">WhatsApp sticker creator with custom management tools.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.quickstickersnew" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+            </div>
+
+            <div class="app-card p-6 rounded-xl flex flex-col" data-category="lifestyle">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="text-3xl">🧠</div>
+                    <h3 class="text-lg font-bold">Mood Tracker</h3>
+                </div>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Privacy-focused emotion tracking using Room local database.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.moodtracker" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="max-w-6xl mx-auto px-6 py-20 border-t border-slate-800 text-center">
+        <h2 class="text-2xl font-bold mb-6">Get In Touch</h2>
+        <button onclick="smartContact()" class="bg-green-500 text-slate-900 font-bold px-8 py-3 rounded-lg hover:bg-white transition-colors">
+            Send me an Email
+        </button>
+        <p class="text-slate-500 mt-4 text-sm">raju.yadav535482@gmail.com</p>
+    </footer>
 
     <script>
         lucide.createIcons();
 
-        // --- Theme Logic ---
+        // Theme Toggle Logic
         function toggleTheme() {
             const html = document.getElementById('main-html');
             const icon = document.getElementById('theme-icon');
-            
             if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                html.classList.add('light');
-                localStorage.setItem('theme', 'light');
-                updateIcon('sun');
+                html.classList.replace('dark', 'light');
+                icon.setAttribute('data-lucide', 'sun');
             } else {
-                html.classList.remove('light');
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                updateIcon('moon');
+                html.classList.replace('light', 'dark');
+                icon.setAttribute('data-lucide', 'moon');
             }
-        }
-
-        function updateIcon(name) {
-            const iconContainer = document.getElementById('theme-icon');
-            iconContainer.setAttribute('data-lucide', name);
             lucide.createIcons();
         }
 
-        // --- Filter Logic ---
-        function filterProjects(category, event) {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        // Filtering Logic
+        function filterApps(category, e) {
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
 
-            const cards = document.querySelectorAll('.project-card');
+            const cards = document.querySelectorAll('.app-card');
             cards.forEach(card => {
                 if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.classList.remove('hidden');
+                    card.classList.remove('project-hidden');
                 } else {
-                    card.classList.add('hidden');
+                    card.classList.add('project-hidden');
                 }
             });
         }
 
-        function contactMe() {
+        // Smart Contact Logic
+        function smartContact() {
             const email = "raju.yadav535482@gmail.com";
-            const subject = "Android Project Inquiry";
-            const isMobile = /Android|iPhone/i.test(navigator.userAgent);
+            const subject = "Contact from Portfolio";
+            const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
             if (isMobile) {
                 window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
             } else {
                 window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`, '_blank');
             }
-        }
-
-        // Check for saved theme preference
-        if (localStorage.getItem('theme') === 'light') {
-            toggleTheme();
         }
     </script>
 </body>
