@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Portfolio | Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        .skill-badge { background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2); }
+    </style>
+</head>
+<body class="text-slate-200">
+
+    <header class="max-w-6xl mx-auto px-6 pt-24 pb-12 text-center">
+        <div class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-green-400 uppercase bg-green-400/10 rounded-full">Available for Projects</div>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6">Building the future of <span class="text-green-400">Mobile.</span></h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">Senior Android Developer specializing in high-performance apps, clean architecture, and intuitive UI/UX.</p>
+    </header>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-2">
+            <i data-lucide="cpu" class="text-green-400"></i> Technical Expertise
+        </h2>
+        <div class="flex flex-wrap gap-3">
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Kotlin</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Jetpack Compose</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">MVVM / MVI</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Room DB</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Retrofit</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Coroutines</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Dagger Hilt</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Firebase</span>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-2">
+            <i data-lucide="layers" class="text-green-400"></i> Featured Projects
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="glass-card p-6 rounded-3xl flex flex-col group">
+                <div class="flex items-center space-x-4 mb-5">
+                    <div class="w-14 h-14 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400">
+                        <i data-lucide="car"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">NjoyCabs</h3>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest">Travel</p>
+                    </div>
+                </div>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Outstation taxi booking for intercity travel with one-way, return, and multi-day ride options.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.njoy_outstation" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
+                    <i data-lucide="play" class="w-4 h-4"></i> Play Store
+                </a>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl flex flex-col group">
+                <div class="flex items-center space-x-4 mb-5">
+                    <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400">
+                        <i data-lucide="video"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">VideoCompresso</h3>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest">Utilities</p>
+                    </div>
+                </div>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Video editing utility with compression, trimming, and reverse playback features.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.sony.videocomressor" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
+                    <i data-lucide="play" class="w-4 h-4"></i> Play Store
+                </a>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl flex flex-col group">
+                <div class="flex items-center space-x-4 mb-5">
+                    <div class="w-14 h-14 bg-pink-500/20 rounded-2xl flex items-center justify-center text-pink-400">
+                        <i data-lucide="smile-plus"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Mood Tracker</h3>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest">Lifestyle</p>
+                    </div>
+                </div>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Privacy-focused emotion tracking using Room Database for secure local storage.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.moodtracker" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
+                    <i data-lucide="play" class="w-4 h-4"></i> Play Store
+                </a>
+            </div>
+            </div>
+    </section>
+
+    <section class="max-w-2xl mx-auto px-6 pb-32">
+        <div class="glass-card p-8 rounded-3xl">
+            <h2 class="text-3xl font-bold text-white mb-2 text-center">Let's Connect</h2>
+            <p class="text-slate-400 text-center mb-8">Have a project in mind or just want to say hi?</p>
+            
+            <form action="https://formspree.io/f/your_unique_id" method="POST" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-slate-300">Name</label>
+                    <input type="text" name="name" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-green-400 transition-colors" placeholder="John Doe">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-slate-300">Email</label>
+                    <input type="email" name="email" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-green-400 transition-colors" placeholder="john@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-slate-300">Message</label>
+                    <textarea name="message" rows="4" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-green-400 transition-colors" placeholder="Tell me about your app idea..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-400 text-slate-900 font-bold py-4 rounded-xl transition-all shadow-lg shadow-green-500/20">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
