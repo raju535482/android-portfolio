@@ -10,7 +10,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; }
         
-        /* The specific glass theme you liked */
         .glass-card { 
             background: rgba(30, 41, 59, 0.7); 
             backdrop-filter: blur(12px); 
@@ -23,9 +22,10 @@
         }
         .skill-badge { background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2); }
         
-        /* Filter Logic visibility */
-        .project-hidden { display: none; }
-        .filter-btn.active { background-color: #4ade80; color: #0f172a; }
+        /* FIXED: Added !important to ensure display:none beats Tailwind's grid/flex */
+        .project-hidden { display: none !important; }
+
+        .filter-btn.active { background-color: #4ade80; color: #0f172a; border-color: #4ade80; }
     </style>
 </head>
 <body class="text-slate-200">
@@ -98,7 +98,7 @@
                         <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">HR Management</p>
                     </div>
                 </div>
-                <p class="text-slate-400 text-sm flex-grow mb-6">HR leave management system with leave applications, status tracking, and real-time notifications.</p>
+                <p class="text-slate-400 text-sm flex-grow mb-6">HR leave management system with leave applications, status tracking, and notifications.</p>
                 <a href="https://play.google.com/store/apps/details?id=com.oneclick.admin.calendar" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
                     <i data-lucide="play" class="w-4 h-4"></i> View App
                 </a>
@@ -162,15 +162,17 @@
     <script>
         lucide.createIcons();
 
-        // Filtering Logic
         function filterApps(category, e) {
+            // Update active state of buttons
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
+            e.currentTarget.classList.add('active');
 
+            // Filter cards
             const cards = document.querySelectorAll('.app-card');
             cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
                     card.classList.remove('project-hidden');
                 } else {
                     card.classList.add('project-hidden');
@@ -178,7 +180,6 @@
             });
         }
 
-        // Smart Gmail/Mobile App Logic
         function smartContact() {
             const email = "raju.yadav535482@gmail.com";
             const subject = "Contact from Portfolio";
