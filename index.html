@@ -1,138 +1,166 @@
 <!DOCTYPE html>
-<html lang="en" id="main-html" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Android Portfolio | Raju Yadav</title>
+    <title>Raju Yadav | Android Developer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body { transition: background-color 0.3s ease; }
-        /* Original Dark Style */
-        .dark body { background-color: #0f172a; color: #f1f5f9; }
-        .light body { background-color: #ffffff; color: #1e293b; }
-
-        .app-card { 
-            transition: all 0.3s ease; 
-            border: 1px solid rgba(255,255,255,0.1); 
-        }
-        .dark .app-card { background-color: #1e293b; }
-        .light .app-card { background-color: #f1f5f9; border-color: #e2e8f0; }
-
-        .app-card:hover { 
-            transform: translateY(-5px); 
-            border-color: #4ade80; 
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; }
         
-        /* Filter Logic */
+        /* The specific glass theme you liked */
+        .glass-card { 
+            background: rgba(30, 41, 59, 0.7); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(74, 222, 128, 0.3);
+        }
+        .skill-badge { background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2); }
+        
+        /* Filter Logic visibility */
         .project-hidden { display: none; }
-        .filter-btn.active { background-color: #4ade80; color: #0f172a; border-color: #4ade80; }
+        .filter-btn.active { background-color: #4ade80; color: #0f172a; }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body class="text-slate-200">
 
-    <div class="max-w-6xl mx-auto px-6 pt-6 flex justify-end">
-        <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-700 hover:bg-slate-800 transition-colors">
-            <i id="theme-icon" data-lucide="moon" class="w-5 h-5"></i>
-        </button>
-    </div>
-
-    <header class="max-w-6xl mx-auto px-6 pt-10 pb-12 text-center">
-        <h1 class="text-4xl font-bold dark:text-white light:text-slate-900">Raju Yadav</h1>
-        <p class="text-slate-400 mt-2">Android Developer • Mobile Solutions</p>
+    <header class="max-w-6xl mx-auto px-6 pt-20 pb-12 text-center">
+        <h1 class="text-5xl font-extrabold text-white tracking-tight mb-4">Raju Yadav</h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">Android Developer specializing in Kotlin, Room DB, and Jetpack Compose.</p>
         
-        <div class="flex flex-wrap justify-center gap-2 mt-8">
-            <button onclick="filterApps('all', event)" class="filter-btn active px-4 py-1.5 rounded-md border border-slate-700 text-sm font-medium transition-all">All</button>
-            <button onclick="filterApps('business', event)" class="filter-btn px-4 py-1.5 rounded-md border border-slate-700 text-sm font-medium transition-all">Business</button>
-            <button onclick="filterApps('utility', event)" class="filter-btn px-4 py-1.5 rounded-md border border-slate-700 text-sm font-medium transition-all">Utilities</button>
-            <button onclick="filterApps('lifestyle', event)" class="filter-btn px-4 py-1.5 rounded-md border border-slate-700 text-sm font-medium transition-all">Lifestyle</button>
+        <div class="flex flex-wrap justify-center gap-2 mt-10">
+            <button onclick="filterApps('all', event)" class="filter-btn active px-5 py-2 rounded-full border border-slate-700 text-sm font-bold transition-all hover:border-green-400">All Apps</button>
+            <button onclick="filterApps('business', event)" class="filter-btn px-5 py-2 rounded-full border border-slate-700 text-sm font-bold transition-all hover:border-green-400">Business</button>
+            <button onclick="filterApps('utility', event)" class="filter-btn px-5 py-2 rounded-full border border-slate-700 text-sm font-bold transition-all hover:border-green-400">Utilities</button>
+            <button onclick="filterApps('lifestyle', event)" class="filter-btn px-5 py-2 rounded-full border border-slate-700 text-sm font-bold transition-all hover:border-green-400">Lifestyle</button>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pb-20">
-        <div id="app-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <div class="app-card p-6 rounded-xl flex flex-col" data-category="business">
-                <div class="flex items-center space-x-4 mb-4">
-                    <div class="text-3xl">🚕</div>
-                    <h3 class="text-lg font-bold">NjoyCabs</h3>
+    <section class="max-w-6xl mx-auto px-6 mb-20">
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <i data-lucide="cpu" class="text-green-400"></i> Technical Expertise
+        </h2>
+        <div class="flex flex-wrap gap-3">
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Kotlin</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Jetpack Compose</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Room DB</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Retrofit</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Firebase</span>
+            <span class="skill-badge px-4 py-2 rounded-xl text-green-400 font-medium">Android SDK</span>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-2">
+            <i data-lucide="layers" class="text-green-400"></i> Featured Apps
+        </h2>
+        <div id="app-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="business">
+                <div class="flex items-center space-x-4 mb-5">
+                    <div class="w-14 h-14 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400 text-2xl">🚕</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white leading-tight">NjoyCabs</h3>
+                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Outstation Taxi</p>
+                    </div>
                 </div>
-                <p class="text-slate-400 text-sm flex-grow mb-6">Taxi booking app for intercity travel with one-way and multi-day options.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.njoy_outstation" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Taxi booking app for intercity travel with one-way, return, and multi-day ride options.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.njoy_outstation" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
+                    <i data-lucide="play" class="w-4 h-4"></i> View App
+                </a>
             </div>
 
-            <div class="app-card p-6 rounded-xl flex flex-col" data-category="business">
-                <div class="flex items-center space-x-4 mb-4">
-                    <div class="text-3xl">💼</div>
-                    <h3 class="text-lg font-bold">MWR Life</h3>
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="business">
+                <div class="flex items-center space-x-4 mb-5">
+                    <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 text-2xl">💼</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white leading-tight">MWR Life</h3>
+                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Business Platform</p>
+                    </div>
                 </div>
-                <p class="text-slate-400 text-sm flex-grow mb-6">Business management platform for lifestyle consultants with push alerts.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.mwrlife" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Business management platform for lifestyle consultants with push notifications and video sharing.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.mwrlife" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
+                    <i data-lucide="play" class="w-4 h-4"></i> View App
+                </a>
             </div>
 
-            <div class="app-card p-6 rounded-xl flex flex-col" data-category="business">
-                <div class="flex items-center space-x-4 mb-4">
-                    <div class="text-3xl">📅</div>
-                    <h3 class="text-lg font-bold">Holiday Tracker</h3>
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="business">
+                <div class="flex items-center space-x-4 mb-5">
+                    <div class="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 text-2xl">📅</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white leading-tight">Holiday Tracker</h3>
+                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">HR Management</p>
+                    </div>
                 </div>
-                <p class="text-slate-400 text-sm flex-grow mb-6">HR leave management system with status tracking and notifications.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.oneclick.admin.calendar" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+                <p class="text-slate-400 text-sm flex-grow mb-6">HR leave management system with leave applications, status tracking, and real-time notifications.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.oneclick.admin.calendar" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
+                    <i data-lucide="play" class="w-4 h-4"></i> View App
+                </a>
             </div>
 
-            <div class="app-card p-6 rounded-xl flex flex-col" data-category="utility">
-                <div class="flex items-center space-x-4 mb-4">
-                    <div class="text-3xl">🎬</div>
-                    <h3 class="text-lg font-bold">VideoCompresso</h3>
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="lifestyle">
+                <div class="flex items-center space-x-4 mb-5">
+                    <div class="w-14 h-14 bg-pink-500/20 rounded-2xl flex items-center justify-center text-pink-400 text-2xl">🧠</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white leading-tight">Mood Tracker</h3>
+                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Privacy-Focused</p>
+                    </div>
                 </div>
-                <p class="text-slate-400 text-sm flex-grow mb-6">Video utility for compression, trimming, and reverse playback features.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.sony.videocomressor" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Emotion tracking app with local database (Room) and one-tap mood recording.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.moodtracker" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
+                    <i data-lucide="play" class="w-4 h-4"></i> View App
+                </a>
             </div>
 
-            <div class="app-card p-6 rounded-xl flex flex-col" data-category="utility">
-                <div class="flex items-center space-x-4 mb-4">
-                    <div class="text-3xl">🎨</div>
-                    <h3 class="text-lg font-bold">Quick Stickers</h3>
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="utility">
+                <div class="flex items-center space-x-4 mb-5">
+                    <div class="w-14 h-14 bg-indigo-500/20 rounded-2xl flex items-center justify-center text-indigo-400 text-2xl">🎬</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white leading-tight">VideoCompresso</h3>
+                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Utility Tool</p>
+                    </div>
                 </div>
-                <p class="text-slate-400 text-sm flex-grow mb-6">WhatsApp sticker creator with custom management tools.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.quickstickersnew" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+                <p class="text-slate-400 text-sm flex-grow mb-6">Video editing utility with compression, trimming, and reverse video features.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.sony.videocomressor" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
+                    <i data-lucide="play" class="w-4 h-4"></i> View App
+                </a>
             </div>
 
-            <div class="app-card p-6 rounded-xl flex flex-col" data-category="lifestyle">
-                <div class="flex items-center space-x-4 mb-4">
-                    <div class="text-3xl">🧠</div>
-                    <h3 class="text-lg font-bold">Mood Tracker</h3>
+            <div class="app-card glass-card p-6 rounded-3xl flex flex-col" data-category="utility">
+                <div class="flex items-center space-x-4 mb-5">
+                    <div class="w-14 h-14 bg-orange-500/20 rounded-2xl flex items-center justify-center text-orange-400 text-2xl">🎨</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white leading-tight">Quick Stickers</h3>
+                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Social Utility</p>
+                    </div>
                 </div>
-                <p class="text-slate-400 text-sm flex-grow mb-6">Privacy-focused emotion tracking using Room local database.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.moodtracker" target="_blank" class="text-green-400 text-sm font-semibold hover:underline">View on Play Store →</a>
+                <p class="text-slate-400 text-sm flex-grow mb-6">WhatsApp sticker creator with custom sticker management and image processing.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.rajuyadav.quickstickersnew" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-700 hover:bg-green-500 hover:text-slate-900 transition-all font-bold">
+                    <i data-lucide="play" class="w-4 h-4"></i> View App
+                </a>
             </div>
 
         </div>
-    </main>
+    </section>
 
-    <footer class="max-w-6xl mx-auto px-6 py-20 border-t border-slate-800 text-center">
-        <h2 class="text-2xl font-bold mb-6">Get In Touch</h2>
-        <button onclick="smartContact()" class="bg-green-500 text-slate-900 font-bold px-8 py-3 rounded-lg hover:bg-white transition-colors">
-            Send me an Email
-        </button>
-        <p class="text-slate-500 mt-4 text-sm">raju.yadav535482@gmail.com</p>
-    </footer>
+    <section class="max-w-2xl mx-auto px-6 pb-32 text-center">
+        <div class="glass-card p-10 rounded-3xl">
+            <h2 class="text-3xl font-bold text-white mb-6">Let's Connect</h2>
+            <button onclick="smartContact()" class="w-full bg-green-500 text-slate-900 font-bold py-4 rounded-xl shadow-lg shadow-green-500/20 hover:bg-white transition-all">
+                Send me an Email
+            </button>
+            <p class="text-slate-500 mt-4 text-sm font-medium tracking-wide">raju.yadav535482@gmail.com</p>
+        </div>
+    </section>
 
     <script>
         lucide.createIcons();
-
-        // Theme Toggle Logic
-        function toggleTheme() {
-            const html = document.getElementById('main-html');
-            const icon = document.getElementById('theme-icon');
-            if (html.classList.contains('dark')) {
-                html.classList.replace('dark', 'light');
-                icon.setAttribute('data-lucide', 'sun');
-            } else {
-                html.classList.replace('light', 'dark');
-                icon.setAttribute('data-lucide', 'moon');
-            }
-            lucide.createIcons();
-        }
 
         // Filtering Logic
         function filterApps(category, e) {
@@ -150,7 +178,7 @@
             });
         }
 
-        // Smart Contact Logic
+        // Smart Gmail/Mobile App Logic
         function smartContact() {
             const email = "raju.yadav535482@gmail.com";
             const subject = "Contact from Portfolio";
