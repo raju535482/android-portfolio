@@ -134,31 +134,35 @@
         <div class="glass-card p-8 rounded-3xl text-center">
             <h2 class="text-2xl font-bold text-white mb-4">Get In Touch</h2>
             
-            <a href="mailto:yourname@gmail.com" 
-               class="inline-flex items-center justify-center gap-3 w-full bg-green-500 hover:bg-green-400 text-slate-900 font-bold py-4 rounded-xl transition-all mb-4">
-               <i data-lucide="mail"></i> Open Email Client
-            </a>
+        <button onclick="contactMe()" 
+           class="inline-flex items-center justify-center gap-3 w-full bg-green-500 hover:bg-green-400 text-slate-900 font-bold py-4 rounded-xl transition-all mb-4">
+           <i data-lucide="mail"></i> Send me an Email
+        </button>
         
-            <div class="flex items-center justify-between bg-slate-800 p-3 rounded-xl border border-slate-700">
-                <span id="emailText" class="text-slate-300 text-sm">yourname@gmail.com</span>
-                <button onclick="copyEmail()" class="text-green-400 hover:text-white transition-colors flex items-center gap-1 text-sm font-semibold">
-                    <i data-lucide="copy" class="w-4 h-4"></i> Copy
-                </button>
-            </div>
-            <p id="copyFeedback" class="text-xs text-green-500 mt-2 opacity-0 transition-opacity">Email copied to clipboard!</p>
+        <script>
+            function contactMe() {
+                const email = "raju.yadav535482@gmail.com";
+                const subject = "Inquiry from Portfolio";
+                const body = "Hi Raju, I saw your portfolio and would like to connect...";
+        
+                // Check if the user is on a mobile device
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+                if (isMobile) {
+                    // Trigger the system Mail App (Gmail App)
+                    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                } else {
+                    // Open Gmail Website in a new desktop tab
+                    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    window.open(gmailUrl, '_blank');
+                }
+            }
+        
+            // Don't forget to keep your icon initialization
+            lucide.createIcons();
+        </script>
         </div>
 
-        <script>
-            function copyEmail() {
-                const email = document.getElementById('emailText').innerText;
-                navigator.clipboard.writeText(email);
-                
-                // Show feedback message
-                const feedback = document.getElementById('copyFeedback');
-                feedback.style.opacity = '1';
-                setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
-            }
-        </script>
     </section>
 
     <script>
